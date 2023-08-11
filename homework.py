@@ -35,6 +35,7 @@ def check_tokens():
 
 def send_message(bot, message):
     """Отправка сообщения в Telegram."""
+    logging.info('Начало отправки сообщения')
     try:
         bot.send_message(TELEGRAM_CHAT_ID, message)
     except Exception as error:
@@ -46,6 +47,7 @@ def send_message(bot, message):
 
 def get_api_answer(timestamp):
     """Запрос к эндпоинту API-сервиса."""
+    logging.info('Начало отправки запроса к API')
     params = {'from_date': timestamp}
     try:
         response = requests.get(ENDPOINT, headers=HEADERS, params=params)
@@ -79,6 +81,7 @@ def check_response(response):
 
 def parse_status(homework):
     """Извлечение информации о конкретной домашней работе."""
+    logging.info('Начало парсинга')
     if 'homework_name' not in homework:
         logging.error('Нет названия работы в запросе')
         raise KeyError('Нет названия работы в запросе')
